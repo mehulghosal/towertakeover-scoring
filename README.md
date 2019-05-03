@@ -1,2 +1,6 @@
 # towertakeover-scoring
-scoring + strats for 2020 vex game tower takeover
+scoring + strats
+
+* 2019 - 2020 VRC Tower Takeover Scoring App
+* For immediate scoring during matches
+* Suggests moves for maximum scores/descores
