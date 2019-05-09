@@ -72,51 +72,55 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget highCheckBox(int i){
-    return Row(
-        children: <Widget>[
+    return  Row(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: <Widget>[
+
         Checkbox(
-        activeColor: Colors.orange,
-        value: highValues[0][0],
-        onChanged: (bool value) {
-      setState(() {
-        if(highValues[0][0]==false)
-          highCubes[0] += 1;
-        else if(highValues[0][0])
-          highCubes[0] -= 1;
-        highValues[0][0] = value;
-        _updateText(0);
-      });
-    },
-    ),
-    Checkbox(
-    activeColor: Colors.green,
-    value: highValues[0][1],
-    onChanged: (bool value) {
-    setState(() {
-    if(highValues[0][1]==false)
-    highCubes[1] += 1;
-    else if(highValues[0][1])
-    highCubes[1] -= 1;
-    highValues[0][1] = value;
-    _updateText(0);
-    });
-    },
-    ),
-    Checkbox(
-    activeColor: Colors.purple,
-    value: highValues[0][2],
-    onChanged: (bool value) {
-    setState(() {
-    if(highValues[0][2]==false)
-    highCubes[2] += 1;
-    else if(highValues[0][2])
-    highCubes[2] -= 1;
-    highValues[0][2] = value;
-    _updateText(0);
-    });
-    },
-    )
-    ];
+          activeColor: Colors.orange,
+          value: highValues[i][0],
+          onChanged: (bool value) {
+            setState(() {
+              if(highValues[i][0]==false){
+                highCubes[0] += 1;}
+              else if(highValues[i][0]){
+                highCubes[0] -= 1;}
+              highValues[i][0] = value;
+              _updateText(0);
+            });
+          },
+        ),
+        Checkbox(
+          activeColor: Colors.green,
+          value: highValues[i][1],
+          onChanged: (bool value) {
+            setState(() {
+              if(highValues[i][1]==false){
+                highCubes[1] += 1;}
+              else if(highValues[i][1]){
+                highCubes[1] -= 1;}
+              highValues[i][1] = value;
+              _updateText(0);
+            });
+          },
+        ),
+        Checkbox(
+          activeColor: Colors.purple,
+          value: highValues[i][2],
+          onChanged: (bool value) {
+            setState(() {
+              if(highValues[i][2]==false){
+                highCubes[2] += 1;}
+              else if(highValues[i][2]){
+                highCubes[2] -= 1;}
+              highValues[i][2] = value;
+              _updateText(0);
+            });
+          },
+        )
+      ]
+    );
   }
 
   @override
@@ -345,58 +349,35 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
 
-          Container(
-            alignment: Alignment(0, -.2),
-            child:  Container(
-                alignment: Alignment(0, -.2),
-                child: Row(
-                  children: <Widget>[
-                    Checkbox(
-                      activeColor: Colors.orange,
-                      value: highValues[0][0],
-                      onChanged: (bool value) {
-                        setState(() {
-                          if(highValues[0][0]==false)
-                            highCubes[0] += 1;
-                          else if(highValues[0][0])
-                            highCubes[0] -= 1;
-                          highValues[0][0] = value;
-                          _updateText(0);
-                        });
-                      },
-                    ),
-                    Checkbox(
-                      activeColor: Colors.green,
-                      value: highValues[0][1],
-                      onChanged: (bool value) {
-                        setState(() {
-                          if(highValues[0][1]==false)
-                            highCubes[1] += 1;
-                          else if(highValues[0][1])
-                            highCubes[1] -= 1;
-                          highValues[0][1] = value;
-                          _updateText(0);
-                        });
-                      },
-                    ),
-                    Checkbox(
-                      activeColor: Colors.purple,
-                      value: highValues[0][2],
-                      onChanged: (bool value) {
-                        setState(() {
-                          if(highValues[0][2]==false)
-                            highCubes[2] += 1;
-                          else if(highValues[0][2])
-                            highCubes[2] -= 1;
-                          highValues[0][2] = value;
-                          _updateText(0);
-                        });
-                      },
-                    )
-                  ],
-                ),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  highCheckBox(0),
+                  highCheckBox(1)
+                ]
               ),
-            ),
+              Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    highCheckBox(2),
+                    highCheckBox(3),
+                    highCheckBox(4),
+                  ]
+              ),
+              Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    highCheckBox(5),
+                    highCheckBox(6),
+                  ]
+              ),
+
+            ],
+          ),
 
         ],
       ),
