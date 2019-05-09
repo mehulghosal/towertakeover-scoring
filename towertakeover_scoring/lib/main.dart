@@ -43,6 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
   bool purple = false;
 
   List highValues = List<List<bool>>.generate(7, (i) => List<bool>.generate(3, (j) => false));
+  double checkWidth = 45;
 
 //  blueOrange, blueGreen, bluePurple, redOrange, redGreen, redPurple
   List cubeValues = [0, 0, 0, 0, 0, 0];
@@ -71,54 +72,68 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void highSwitch(int i, int c, bool value){
+    List a = [0,1,2];
+    a.remove(c);
+    if(!highValues[i][c]){
+      highCubes[c] += 1;
+      if(highValues[i][a[0]]) {
+        highValues[i][a[0]] = false;
+        highCubes[a[0]] -= 1;
+      }
+      if(highValues[i][a[1]]) {
+        highValues[i][a[1]] = false;
+        highCubes[a[1]] -= 1;
+      }
+    }
+    else if(highValues[i][c]){
+      highCubes[c] -= 1;}
+    highValues[i][c] = value;
+    _updateText(0);
+  }
+
   Widget highCheckBox(int i){
     return  Row(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
+        SizedBox(
+          width: checkWidth,
+          child: Checkbox(
+            activeColor: Colors.orange,
+            value: highValues[i][0],
+            onChanged: (bool value) {
+              setState(() {
+                highSwitch(i, 0, value);
+              });
+            },
+          ),
+        ),
+        SizedBox(
+          width: checkWidth,
+          child: Checkbox(
+            activeColor: Colors.green,
+            value: highValues[i][1],
+            onChanged: (bool value) {
+              setState(() {
+                highSwitch(i, 1, value);
+              });
+            },
+          ),
+        ),
+        SizedBox(
+          width: checkWidth,
+          child: Checkbox(
+            activeColor: Colors.purple,
+            value: highValues[i][2],
+            onChanged: (bool value) {
+              setState(() {
+                highSwitch(i, 2, value);
+              });
+            },
+          )
+        ),
 
-        Checkbox(
-          activeColor: Colors.orange,
-          value: highValues[i][0],
-          onChanged: (bool value) {
-            setState(() {
-              if(highValues[i][0]==false){
-                highCubes[0] += 1;}
-              else if(highValues[i][0]){
-                highCubes[0] -= 1;}
-              highValues[i][0] = value;
-              _updateText(0);
-            });
-          },
-        ),
-        Checkbox(
-          activeColor: Colors.green,
-          value: highValues[i][1],
-          onChanged: (bool value) {
-            setState(() {
-              if(highValues[i][1]==false){
-                highCubes[1] += 1;}
-              else if(highValues[i][1]){
-                highCubes[1] -= 1;}
-              highValues[i][1] = value;
-              _updateText(0);
-            });
-          },
-        ),
-        Checkbox(
-          activeColor: Colors.purple,
-          value: highValues[i][2],
-          onChanged: (bool value) {
-            setState(() {
-              if(highValues[i][2]==false){
-                highCubes[2] += 1;}
-              else if(highValues[i][2]){
-                highCubes[2] -= 1;}
-              highValues[i][2] = value;
-              _updateText(0);
-            });
-          },
-        )
       ]
     );
   }
@@ -361,23 +376,24 @@ class _MyHomePageState extends State<MyHomePage> {
                 ]
               ),
               Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    highCheckBox(2),
-                    highCheckBox(3),
-                    highCheckBox(4),
-                  ]
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  highCheckBox(2),
+                  highCheckBox(3),
+                  highCheckBox(4),
+                ]
               ),
               Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    highCheckBox(5),
-                    highCheckBox(6),
-                  ]
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  highCheckBox(5),
+                  highCheckBox(6),
+                ]
               ),
-
             ],
           ),
+
+
 
         ],
       ),
