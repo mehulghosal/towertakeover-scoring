@@ -38,10 +38,6 @@ class _MyHomePageState extends State<MyHomePage> {
 //  by default, false is blue
   bool alliance = false;
 
-  bool orange = false;
-  bool green  = false;
-  bool purple = false;
-
   List highValues = List<List<bool>>.generate(7, (i) => List<bool>.generate(3, (j) => false));
   double checkWidth = 45;
 
@@ -93,7 +89,16 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget highCheckBox(int i){
-    return  Row(
+    return Container(
+        decoration: const BoxDecoration(
+          border: Border(
+            top: BorderSide(width: 1.0, color: Color(0xFF000000)),
+            left: BorderSide(width: 1.0, color: Color(0xFF000000)),
+            right: BorderSide(width: 1.0, color: Color(0xFF000000)),
+            bottom: BorderSide(width: 1.0, color: Color(0xFF000000)),
+          ),
+        ),
+      child: Row(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
@@ -135,7 +140,8 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
 
       ]
-    );
+    )
+   );
   }
 
   @override
@@ -366,13 +372,14 @@ class _MyHomePageState extends State<MyHomePage> {
 
           Row(
             mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
+                  Container(height: 100),
                   highCheckBox(0),
-                  highCheckBox(1)
+                  Container(height: 50),
+                  highCheckBox(1),
                 ]
               ),
               Column(
@@ -386,7 +393,9 @@ class _MyHomePageState extends State<MyHomePage> {
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
+                  Container(height: 100),
                   highCheckBox(5),
+                  Container(height: 50),
                   highCheckBox(6),
                 ]
               ),
