@@ -33,6 +33,11 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
+  var THANOS = Colors.purple;
+
+//  STORES REMAINING CUBES ON FIELD [blue, orange, thanos]
+  List cubes = [22, 22, 22];
+
   double b = -.53;
 
 //  by default, false is blue
@@ -47,13 +52,22 @@ class _MyHomePageState extends State<MyHomePage> {
 //  orange, green, purple
   List highCubes = [1,1,1];
 
+//  auton winning
+  List auton = [false, false, false];
+
 //  CALCULATE BLUE ALLIANCE SCORE
   int blueScore(){
-    return highCubes[0]*cubeValues[0] + highCubes[1]*cubeValues[1] + highCubes[2]*cubeValues[2];
+    int score = highCubes[0]*cubeValues[0] + highCubes[1]*cubeValues[1] + highCubes[2]*cubeValues[2];
+    if(auton[0]){score+=3;}
+    else if(auton[2]){score+=6;}
+    return score;
   }
 //  CALCULATE RED ALLIANCE SCORE
   int redScore(){
-    return highCubes[0]*cubeValues[3] + highCubes[1]*cubeValues[4] + highCubes[2]*cubeValues[5];
+    int score = highCubes[0]*cubeValues[3] + highCubes[1]*cubeValues[4] + highCubes[2]*cubeValues[5];
+    if(auton[0]){score+=3;}
+    else if(auton[1]){score+=6;}
+    return score;
   }
 
   List _cube = [0,0,0,0,0,0];
@@ -85,6 +99,12 @@ class _MyHomePageState extends State<MyHomePage> {
     else if(highValues[i][c]){
       highCubes[c] -= 1;}
     highValues[i][c] = value;
+    _updateText(0);
+  }
+
+  void setAuton(int winner){
+    for(int i = 0; i< 3; i++){auton[i] = false;}
+    auton[winner]=true;
     _updateText(0);
   }
 
@@ -129,7 +149,7 @@ class _MyHomePageState extends State<MyHomePage> {
         SizedBox(
           width: checkWidth,
           child: Checkbox(
-            activeColor: Colors.purple,
+            activeColor: THANOS,
             value: highValues[i][2],
             onChanged: (bool value) {
               setState(() {
@@ -170,6 +190,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
           ),
+
 //          RED CUBES
           Container(
             alignment: Alignment(0, -0.82),
@@ -202,7 +223,7 @@ class _MyHomePageState extends State<MyHomePage> {
                ),
                Expanded(
                  child:MaterialButton(
-                   color: Colors.purple,
+                   color: THANOS,
                    child: Text("+", style: new TextStyle(fontSize: 20)),
                    onPressed: (){
                      cubeValues[5]+=1;
@@ -240,7 +261,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 Expanded(
                   child:MaterialButton(
-                    color: Colors.purple,
+                    color: THANOS,
                     child: Text("-", style: new TextStyle(fontSize: 20)),
                     onPressed: (){
                       cubeValues[5]-=1;
@@ -264,7 +285,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Text("Green Cubes: " + _cube[4].toString())
                 ),
                 Expanded(
-                    child: Text("Purple Cubes: " + _cube[5].toString())
+                    child: Text("Thanos Cubes: " + _cube[5].toString())
                 ),
               ],
             ),
@@ -302,7 +323,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 Expanded(
                   child:MaterialButton(
-                    color: Colors.purple,
+                    color: THANOS,
                     child: Text("+", style: new TextStyle(fontSize: 20)),
                     onPressed: (){
                       cubeValues[2] += 1;
@@ -340,7 +361,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 Expanded(
                   child:MaterialButton(
-                    color: Colors.purple,
+                    color: THANOS,
                     child: Text("-", style: new TextStyle(fontSize: 20)),
                     onPressed: (){
                       cubeValues[2] -= 1;
@@ -400,6 +421,53 @@ class _MyHomePageState extends State<MyHomePage> {
                 ]
               ),
             ],
+          ),
+//          AUTON WINNER
+          Container(
+            alignment: Alignment(0, .38),
+            child: Text("Auton Selector", style: new TextStyle(fontSize: 21),),
+          ),
+          Container(
+            alignment: Alignment(0, .45),
+            child: Row(
+              children: <Widget>[
+//                RED WIN AUTON
+                Expanded(
+                  child: Checkbox(
+                    activeColor: Colors.red,
+                    value: auton[1],
+                    onChanged: (bool value) {
+                      setState(() {
+                        setAuton(1);
+                      });
+                    },
+                  ),
+                ),
+  //                AUTON TIE
+                Expanded(
+                  child: Checkbox(
+                    activeColor: Colors.black,
+                    value: auton[0],
+                    onChanged: (bool value) {
+                      setState(() {
+                        setAuton(0);
+                      });
+                    },
+                  ),
+                ),
+                Expanded(
+                  child: Checkbox(
+                    activeColor: Colors.blue,
+                    value: auton[2],
+                    onChanged: (bool value) {
+                      setState(() {
+                        setAuton(2);
+                      });
+                    },
+                  ),
+                )
+              ],
+            ),
           ),
 
 
