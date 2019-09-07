@@ -392,10 +392,11 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
 
           Row(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisSize: MainAxisSize.max,
             children: <Widget>[
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
                   Container(height: 100),
                   highCheckBox(0),
@@ -405,6 +406,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
                   highCheckBox(2),
                   highCheckBox(3),
@@ -413,6 +415,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
                   Container(height: 100),
                   highCheckBox(5),
