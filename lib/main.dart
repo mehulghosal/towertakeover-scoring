@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'suggest.dart';
 
 void main() {
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
@@ -73,12 +74,15 @@ class _MyHomePageState extends State<MyHomePage> {
   List _cube = [0,0,0,0,0,0];
   int _blueScore = 0;
   int _redScore  = 0;
+//  suggestions = [greatest color diff, tower to descore]
+  List _suggestions = ["", ""];
   //i is the index in getCubes()
   void _updateText(int i){
     setState(() {
       _cube = cubeValues;
       _blueScore = blueScore();
       _redScore  = redScore();
+//      _suggestions = suggest(alliance, [_blueScore, redScore()], [cubeValues[0], cubeValues[1], cubeValues[2]], [cubeValues[3], cubeValues[4], cubeValues[5]], highValues);
     });
   }
 
@@ -385,7 +389,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     child: Text("Green Cubes: " + _cube[1].toString())
                 ),
                 Expanded(
-                    child: Text("Purple Cubes: " + _cube[2].toString())
+                    child: Text("Thanos Cubes: " + _cube[2].toString())
                 ),
               ],
             ),
@@ -473,6 +477,14 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
 
+          Container(
+              alignment: Alignment(0, 0.55),
+              child: Text("Greatest color differenece: " + _suggestions[0], style: new TextStyle(fontSize: 21),)
+          ),
+          Container(
+              alignment: Alignment(0, 0.62),
+              child: Text("Descore " + _suggestions[1].toString(), style: new TextStyle(fontSize: 21),)
+          ),
 
 
         ],
