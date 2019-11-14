@@ -119,14 +119,14 @@ class _MyHomePageState extends State<MyHomePage> {
           Container(
             child: Row(
               children: <Widget>[
-                Text( _cube[0].toString(), style: TextStyle(fontSize: 20),),
-                Text( _cube[1].toString(), style: TextStyle(fontSize: 20),),
-                Text( _cube[2].toString(), style: TextStyle(fontSize: 20),),
+                Text( _cube[0].toString(), style: TextStyle(fontSize: 30, color: Colors.orange),),
+                Text( _cube[1].toString(), style: TextStyle(fontSize: 30, color: Colors.green),),
+                Text( _cube[2].toString(), style: TextStyle(fontSize: 30, color: Colors.purple),),
               ],
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               mainAxisSize: MainAxisSize.max,
             ),
-            alignment: Alignment(0, align+0.1),
+            alignment: Alignment(0, align+0.09),
           ),
 
 //          stacking plus
@@ -221,14 +221,14 @@ class _MyHomePageState extends State<MyHomePage> {
           Container(
             child: Row(
               children: <Widget>[
-                Text((_towers[0]-1).toString(), style: TextStyle(fontSize: 20),),
-                Text((_towers[1]-1).toString(), style: TextStyle(fontSize: 20),),
-                Text((_towers[2]-1).toString(), style: TextStyle(fontSize: 20),),
+                Text((_towers[0]-1).toString(), style: TextStyle(fontSize: 30, color: Colors.orange),),
+                Text((_towers[1]-1).toString(), style: TextStyle(fontSize: 30, color: Colors.green),),
+                Text((_towers[2]-1).toString(), style: TextStyle(fontSize: 30, color: Colors.purple),),
               ],
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               mainAxisSize: MainAxisSize.max,
             ),
-            alignment: Alignment(0, align+0.75),
+            alignment: Alignment(0, align+0.74),
           ),
 
 //          Towers plus
@@ -334,7 +334,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                   child: Text("Start Timer", style: TextStyle(fontSize: 20),),
                 ),
-                Text("    $_start", style: TextStyle(fontSize: 20),),
+                Text("    $_start", style: TextStyle(fontSize: 30),),
               ],
             ),
             alignment: Alignment(0, align+1.45),
@@ -357,14 +357,20 @@ class _MyHomePageState extends State<MyHomePage> {
           Container(
             child: Row(
               children: <Widget>[
-                Text(_scores[0].toString(), style: TextStyle(fontSize: 20),),
-                Text(_scores[1].toString(), style: TextStyle(fontSize: 20),),
-                Text(_scores[2].toString(), style: TextStyle(fontSize: 20),),
+                Text(_scores[0].toString(), style: TextStyle(fontSize: 30, color: Colors.orange),),
+                Text(_scores[1].toString(), style: TextStyle(fontSize: 30, color: Colors.green),),
+                Text(_scores[2].toString(), style: TextStyle(fontSize: 30, color: Colors.purple),),
               ],
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               mainAxisSize: MainAxisSize.max,
             ),
-            alignment: Alignment(0, align+1.70),
+            alignment: Alignment(0, align+1.72),
+          ),
+
+//          total delta score
+          Container(
+            child: Text((_scores[0] + _scores[1] + _scores[2]).toString(),style: TextStyle(fontSize: 30,),),
+            alignment: Alignment(0, align+1.82),
           ),
 
 
